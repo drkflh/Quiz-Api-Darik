@@ -34,7 +34,7 @@ exports.getAll = async (req, res) =>{
 exports.update = async (req, res) =>{
     const id = req.params.id
     try{
-        const quiz = await Quiz.findByPk(id, {rejectOnEmpty:ture})
+        const quiz = await Quiz.findByPk(id, {rejectOnEmpty:true})
         quiz.update(req.body,{
             where: {id}
         })
@@ -53,7 +53,7 @@ exports.update = async (req, res) =>{
 exports.delete = async (req, res) =>{
     const id = req.params.id
     try{
-        const quiz = await Quiz.findByPk(id, {rejectOnEmpty:ture})
+        const quiz = await Quiz.findByPk(id, {rejectOnEmpty:true })
         quiz.destroy()
         res.json({
             message: "kuis berhasil dihapus",
