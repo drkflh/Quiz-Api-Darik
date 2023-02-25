@@ -1,12 +1,13 @@
+const { materies } = require("../models");
 const db = require("../models");
-const Quiz = db.quizzes;
+const Materi = db.materies;
 
 //Membuat Data
 exports.create = async (req, res) =>{
     try{
-        const data = await Quiz.create(req.body)
+        const data = await Materi.create(req.body)
         res.json({
-            message: "kuis berhasil ditambahkan",
+            message: "AddMateri",
             data: data,
         })
     }catch (error){
@@ -21,10 +22,10 @@ exports.create = async (req, res) =>{
 exports.getAll = async (req
     , res) =>{
     try{
-        const quizzes = await Quiz.findAll()
+        const materies = await Materi.findAll()
         res.json({
-            message: "kuis berhasil didapatkan",
-            data: quizzes,
+            message: "Materi Tampil",
+            data: materies,
         });
     }catch (error){
         res.status(500).json({
@@ -38,13 +39,13 @@ exports.getAll = async (req
 exports.update = async (req, res) =>{
     const id = req.params.id
     try{
-        const quiz = await Quiz.findByPk(id, {rejectOnEmpty:true})
-        quiz.update(req.body,{
+        const materi = await Materi.findByPk(id, {rejectOnEmpty:true})
+        materi.update(req.body,{
             where: {id}
         })
         res.json({
             message: `Data dengan id ${id} berhasil diubah`,
-            data: quiz,
+            data: materi,
         });
     }catch (error){
         res.status(500).json({
@@ -58,8 +59,8 @@ exports.update = async (req, res) =>{
 exports.delete = async (req, res) =>{
     const id = req.params.id
     try{
-        const quiz = await Quiz.findByPk(id, {rejectOnEmpty:true })
-        quiz.destroy()
+        const materi = await Materi.findByPk(id, {rejectOnEmpty:true })
+        materi.destroy()
         res.json({
             message: "kuis berhasil dihapus",
         });
@@ -75,10 +76,10 @@ exports.delete = async (req, res) =>{
 exports.findOne = async (req, res) =>{
     const id = req.params.id
     try{
-        const quiz = await Quiz.findByPk(id, {rejectOnEmpty:ture})
+        const materi = await Materi.findByPk(id, {rejectOnEmpty:ture})
         res.json({
             message: `kuis berhasil ditampilkan dengan id ${id}`,
-            data: quiz,
+            data: materi,
         });
     }catch (error){
         res.status(500).json({
@@ -88,32 +89,4 @@ exports.findOne = async (req, res) =>{
     }
 }
 
-//Mendapatkan Data Category ID
-exports.getByCategoryId = async (req, res) =>{
-    const id = req.params.id
-    const quizzes = await Quiz.findAll({
-        where: {
-            categoryId: id
-        }
-    })
-        res.json({
-            message: `kuis berhasil ditampilkan dengan id ${id}`,
-            data: quizzes,
-        });
 
-}
-
-//Mendapatkan Data Level ID
-exports.getByLevelId = async (req, res) =>{
-    const id = req.params.id
-    const quizzes = await Quiz.findAll({
-        where: {
-            categoryId: id
-        }
-    })
-        res.json({
-            message: `kuis berhasil ditampilkan dengan id ${id}`,
-            data: quizzes,
-        });
-
-}

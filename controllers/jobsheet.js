@@ -1,6 +1,7 @@
 const db = require("../models");
 const Quiz = db.quizzes;
 
+//Menjawab Satu Pertanyaan
 exports.submitOne = async (req, res) => {
     const jobsheet = {
         quizId: req.body.quizId,
@@ -17,11 +18,11 @@ exports.submitOne = async (req, res) => {
 
         if (req.body.answer == quiz.key){
             res.status(200).json({
-            "message" : "benar"
+            "message" : "Hore Jawabanya Benar"
         })
         } else {
             res .status(200).json({
-            "message" : `jawaban benar adalah ${quiz.key}`
+            "message" : `Jawaban Yang Benar Adalah ${quiz.key}`
         })
         }
     }catch(e){
@@ -29,6 +30,7 @@ exports.submitOne = async (req, res) => {
     }
 };
 
+//Menjawab Banyak Pertanyaan
 exports.submitMany = async (req, res) => {
     const jobsheet = {
         quizId: req.body.quizId,
@@ -51,7 +53,7 @@ exports.submitMany = async (req, res) => {
             }
             res.status(200).json({
 
-                message: `benar ${benar} dari ${totalSoal} soal`
+                message: `Jawabanya Benar ${benar} Dari ${totalSoal} Soal`
             })
         }catch (e){
             res.status(500).json({message: e.message});

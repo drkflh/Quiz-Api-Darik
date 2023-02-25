@@ -1,3 +1,4 @@
+//Konfigurasi Database
 module.exports ={
     HOST: 'localhost',
     USER: 'root',

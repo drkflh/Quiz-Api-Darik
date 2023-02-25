@@ -4,6 +4,7 @@ const app = express();
 const port = 5000;
 const quizRoute = require('./router/quiz');
 const jobsheetRoute = require('./router/jobsheet')
+const materiRoute = require('./router/materi')
 
 app.use(cors());
 app.use(express.json());
@@ -15,5 +16,6 @@ app.get('/',(req, res)=>{
 
 app.use('/api/quizzes', quizRoute);
 app.use('/api/jobsheet', jobsheetRoute);
+app.use('/api/materi', materiRoute);
 //PUNYA DARIK
-app.listen(port, ()=> console.log(`TENANG AMANNNN  http://localhost:${port}!`));
+app.listen(port, ()=> console.log(`Berjalan Di Port http://localhost:${port}!`));
